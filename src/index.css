@@ -1,172 +1,87 @@
-/* =========================================================
-   Haoxing Student Hub – tema sesuai design guideline
-   Primary   : #54131E (maroon), #FFF9F2 (krem)
-   Secondary : #DCD4C0 (beige), #FFB992 (peach), #282828 (arang)
-   Font      : Outfit (judul, 500/600), Nunito Sans (isi, 400/700)
-   ========================================================= */
+@import "tailwindcss";
 
-/* Pertahankan baris import yang sudah ada di file lama kamu.
-   Kalau file lama tidak memakai tw-animate-css, hapus baris kedua. */
-   @import "tailwindcss";
-   @import "tw-animate-css";
-   
-   @custom-variant dark (&:is(.dark *));
-   
-   :root {
-     --radius: 0.625rem;
-   
-     /* Dasar */
-     --background: #fff9f2;
-     --foreground: #282828;
-   
-     --card: #ffffff;
-     --card-foreground: #282828;
-     --popover: #ffffff;
-     --popover-foreground: #282828;
-   
-     /* Primary: maroon, teks di atasnya krem */
-     --primary: #54131e;
-     --primary-foreground: #fff9f2;
-   
-     /* Secondary: beige */
-     --secondary: #dcd4c0;
-     --secondary-foreground: #282828;
-   
-     /* Muted: beige yang lebih terang, untuk latar ringan & teks keterangan */
-     --muted: #f3ede2;
-     --muted-foreground: #6b635a;
-   
-     /* Accent: peach, teks di atasnya maroon (jangan teks putih/krem, kontrasnya rendah) */
-     --accent: #ffb992;
-     --accent-foreground: #54131e;
-   
-     /* Merah untuk error, sengaja dibedakan dari maroon primary */
-     --destructive: #b42318;
-   
-     --border: #dcd4c0;
-     --input: #dcd4c0;
-     --ring: #54131e;
-   
-     /* Sidebar: maroon dengan teks krem, menu aktif peach */
-     --sidebar: #54131e;
-     --sidebar-foreground: #fff9f2;
-     --sidebar-primary: #ffb992;
-     --sidebar-primary-foreground: #54131e;
-     --sidebar-accent: #6e2230;
-     --sidebar-accent-foreground: #fff9f2;
-     --sidebar-border: #6e2230;
-     --sidebar-ring: #ffb992;
-   
-     /* Grafik (dipakai nanti di halaman Rekap) */
-     --chart-1: #54131e;
-     --chart-2: #ffb992;
-     --chart-3: #dcd4c0;
-     --chart-4: #8a3a47;
-     --chart-5: #282828;
-   }
-   
-   /* Mode gelap: opsional, guideline tidak mengaturnya */
-   .dark {
-     --background: #282828;
-     --foreground: #fff9f2;
-     --card: #323030;
-     --card-foreground: #fff9f2;
-     --popover: #323030;
-     --popover-foreground: #fff9f2;
-     --primary: #ffb992;
-     --primary-foreground: #54131e;
-     --secondary: #3d3936;
-     --secondary-foreground: #fff9f2;
-     --muted: #3d3936;
-     --muted-foreground: #c9c0ad;
-     --accent: #54131e;
-     --accent-foreground: #fff9f2;
-     --destructive: #f97066;
-     --border: #4a4541;
-     --input: #4a4541;
-     --ring: #ffb992;
-     --sidebar: #1f1f1f;
-     --sidebar-foreground: #fff9f2;
-     --sidebar-primary: #ffb992;
-     --sidebar-primary-foreground: #54131e;
-     --sidebar-accent: #3d3936;
-     --sidebar-accent-foreground: #fff9f2;
-     --sidebar-border: #3d3936;
-     --sidebar-ring: #ffb992;
-   }
-   
-   @theme inline {
-     /* Font */
-     --font-sans: "Nunito Sans", ui-sans-serif, system-ui, sans-serif;
-     --font-heading: "Outfit", ui-sans-serif, system-ui, sans-serif;
-   
-     /* Radius */
-     --radius-sm: calc(var(--radius) - 4px);
-     --radius-md: calc(var(--radius) - 2px);
-     --radius-lg: var(--radius);
-     --radius-xl: calc(var(--radius) + 4px);
-   
-     /* Warna → utility Tailwind (bg-primary, text-muted-foreground, dst.) */
-     --color-background: var(--background);
-     --color-foreground: var(--foreground);
-     --color-card: var(--card);
-     --color-card-foreground: var(--card-foreground);
-     --color-popover: var(--popover);
-     --color-popover-foreground: var(--popover-foreground);
-     --color-primary: var(--primary);
-     --color-primary-foreground: var(--primary-foreground);
-     --color-secondary: var(--secondary);
-     --color-secondary-foreground: var(--secondary-foreground);
-     --color-muted: var(--muted);
-     --color-muted-foreground: var(--muted-foreground);
-     --color-accent: var(--accent);
-     --color-accent-foreground: var(--accent-foreground);
-     --color-destructive: var(--destructive);
-     --color-border: var(--border);
-     --color-input: var(--input);
-     --color-ring: var(--ring);
-     --color-chart-1: var(--chart-1);
-     --color-chart-2: var(--chart-2);
-     --color-chart-3: var(--chart-3);
-     --color-chart-4: var(--chart-4);
-     --color-chart-5: var(--chart-5);
-     --color-sidebar: var(--sidebar);
-     --color-sidebar-foreground: var(--sidebar-foreground);
-     --color-sidebar-primary: var(--sidebar-primary);
-     --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-     --color-sidebar-accent: var(--sidebar-accent);
-     --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-     --color-sidebar-border: var(--sidebar-border);
-     --color-sidebar-ring: var(--sidebar-ring);
-   }
-   
-   @layer base {
-     * {
-       @apply border-border outline-ring/50;
-     }
-   
-     body {
-       @apply bg-background text-foreground font-sans antialiased;
-     }
-   
-     /* Judul: Outfit Semibold */
-     h1,
-     h2,
-     h3,
-     h4 {
-       @apply font-heading font-semibold tracking-tight;
-     }
-   
-     /* Subjudul kecil & label form: Outfit Medium */
-     h5,
-     h6,
-     label {
-       @apply font-heading font-medium;
-     }
-   
-     /* Teks tebal di isi tetap Nunito Sans Bold */
-     b,
-     strong {
-       @apply font-bold;
-     }
-   }
+/*
+  Panduan desain Haoxing Student Hub
+  Warna : maroon #54131E, krem #FFF9F2, beige #DCD4C0, peach #FFB992, arang #282828
+  Huruf : Outfit (judul, Semibold/Medium) dan Nunito Sans (isi, Bold/Regular)
+*/
+
+:root {
+  --radius: 0.5rem;
+
+  /* warna merek (sesuai panduan) */
+  --brand-maroon: #54131e;
+  --brand-cream: #fff9f2;
+  --brand-beige: #dcd4c0;
+  --brand-peach: #ffb992;
+  --brand-ink: #282828;
+
+  /* token shadcn */
+  --background: var(--brand-cream);
+  --foreground: var(--brand-ink);
+  --card: #fffcf7;
+  --card-foreground: var(--brand-ink);
+  --popover: #fffcf7;
+  --popover-foreground: var(--brand-ink);
+  --primary: var(--brand-maroon);
+  --primary-foreground: var(--brand-cream);
+  --secondary: var(--brand-beige);
+  --secondary-foreground: var(--brand-ink);
+  --muted: #f3ede0;
+  --muted-foreground: #6b6458;
+  --accent: #ffe6d6;
+  --accent-foreground: var(--brand-maroon);
+  --destructive: #c62828;
+  --border: var(--brand-beige);
+  --input: #c9bfa6;
+  --ring: var(--brand-maroon);
+}
+
+@theme inline {
+  --font-sans: "Nunito Sans Variable", "Nunito Sans", "Noto Sans SC", ui-sans-serif, system-ui, sans-serif;
+  --font-heading: "Outfit Variable", "Outfit", "Noto Sans SC", ui-sans-serif, system-ui, sans-serif;
+
+  --color-brand-maroon: var(--brand-maroon);
+  --color-brand-cream: var(--brand-cream);
+  --color-brand-beige: var(--brand-beige);
+  --color-brand-peach: var(--brand-peach);
+  --color-brand-ink: var(--brand-ink);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background font-sans text-foreground antialiased;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-heading);
+  }
+}

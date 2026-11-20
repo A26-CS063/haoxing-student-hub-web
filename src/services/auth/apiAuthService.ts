@@ -9,7 +9,7 @@ import { clearSession, readSession, writeSession } from "./sessionStore";
  * Asumsi saat ini: POST {API_URL}/auth/login -> { access_token, expires_in, user: { id, email, full_name, role } }
  * Peran (role) harus datang dari server (tabel profiles), bukan dari klaim yang bisa diubah klien.
  */
-const API_URL = import.meta.env.VITE_API_URL ?? "http://localhost:8000/api/v1";
+const API_URL = import.meta.env.VITE_API_URL ?? "http://localhost:3000/api/v1";
 
 interface LoginResponse {
   access_token: string;

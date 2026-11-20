@@ -16,6 +16,10 @@ npm run dev
 
 Buka http://localhost:5173. Perintah lain: `npm run typecheck`, `npm run build`, `npm run preview`.
 
+## Panduan desain
+
+Warna: maroon `#54131E`, krem `#FFF9F2`, beige `#DCD4C0`, peach `#FFB992`, arang `#282828`. Huruf: Outfit (judul, Semibold dan Medium) dan Nunito Sans (isi, Bold dan Regular), dipasang lewat paket `@fontsource-variable`. Semua token ada di `src/index.css`.
+
 ## Akun demo (hanya `VITE_AUTH_MODE=mock`)
 
 | Email | Kata sandi | Peran |
@@ -96,3 +100,14 @@ npx shadcn@latest add table dialog dropdown-menu select sonner
 1. Kontrak API login disepakati dengan FS-1, lalu `apiAuthService` disambungkan.
 2. Tes otomatis untuk `ProtectedRoute` dan `RoleRoute` (Vitest + Testing Library): tanpa sesi ke `/login`, pemilik di `/dokumen` melihat 403, admin melihat semua menu.
 3. Isi halaman Data siswa (FR-10 sampai FR-16).
+
+## Layanan AI
+
+Frontend hanya memanggil backend Express (`VITE_API_URL`), tidak pernah memanggil layanan AI (FastAPI) langsung.
+
+| Fitur | Endpoint backend | Tempat di frontend |
+|---|---|---|
+| Tanya jawab program | `POST /ai/faq` | `src/pages/AiAssistantPage.tsx` |
+| Rekomendasi level | `POST /ai/predict-level` (admin) | `src/components/ai/LevelRecommendation.tsx`, saat ini di halaman Asisten AI untuk uji coba. Pindahkan ke form pre-test siswa nanti. |
+
+Klien ada di `src/services/ai/aiService.ts`. Dalam mode `mock`, jawabannya tiruan. Modul backend yang melayani endpoint ini ada di `haoxing-backend-ai-module`.

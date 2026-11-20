@@ -17,7 +17,6 @@ for _, r in s.iterrows():
         status=r.status_pendaftaran, pre=int(r.skor_pretest), lis=int(r.skor_listening),
         gra=int(r.skor_grammar), reg=r.tanggal_daftar))
 
-# perluas ke 1.000 baris (FR-11) mengikuti sebaran data asli
 base = list(rows); used = {r['phone'] for r in rows}
 first = ["Andi","Budi","Citra","Dewi","Eka","Fajar","Gita","Hana","Indra","Joko","Kevin","Lina","Maya","Nadia","Oscar","Putri","Rizky","Sari","Tono","Wulan","Yoga","Zahra","Agus","Bella","Dimas","Felix","Hendra","Jessica","Michael","Stefani","Vincent","Yohana"]
 last = ["Santoso","Wijaya","Pratama","Halim","Tanoto","Saputra","Gunawan","Kurniawan","Lim","Setiawan","Hartono","Susanto","Nugroho","Wibowo","Chandra","Lesmana"]

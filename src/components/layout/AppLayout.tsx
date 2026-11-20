@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { LogOut, Menu, X } from "lucide-react";
 import { Outlet, useNavigate } from "react-router-dom";
 
@@ -7,31 +7,11 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/context/AuthContext";
 import { ROLE_LABEL } from "@/lib/roles";
-import { cn } from "@/lib/utils";
-
-const SIDEBAR_KEY = "sidebar-collapsed";
 
 export function AppLayout() {
   const { session, role, logout } = useAuth();
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
-
-  // Status buka/tutup sidebar desktop, disimpan di browser
-  const [collapsed, setCollapsed] = useState(() => {
-    try {
-      return localStorage.getItem(SIDEBAR_KEY) === "true";
-    } catch {
-      return false;
-    }
-  });
-
-  useEffect(() => {
-    try {
-      localStorage.setItem(SIDEBAR_KEY, String(collapsed));
-    } catch {
-      /* abaikan kalau penyimpanan browser tidak tersedia */
-    }
-  }, [collapsed]);
 
   if (!session || !role) return null;
 
@@ -42,21 +22,12 @@ export function AppLayout() {
 
   return (
     <div className="flex min-h-screen">
-      {/* Sidebar desktop: bisa dibuka/tutup, menempel saat halaman di-scroll */}
-      <aside
-        className={cn(
-          "sticky top-0 hidden h-screen shrink-0 border-r bg-card transition-[width] duration-200 motion-reduce:transition-none md:block",
-          collapsed ? "w-[72px]" : "w-64",
-        )}
-      >
-        <Sidebar
-          role={role}
-          collapsed={collapsed}
-          onToggleCollapse={() => setCollapsed((c) => !c)}
-        />
+      {/* Sidebar desktop */}
+      <aside className="hidden w-64 shrink-0 border-r bg-card md:block">
+        <Sidebar role={role} />
       </aside>
 
-      {/* Sidebar mobile: tetap seperti sebelumnya, tanpa mode ciut */}
+      {/* Sidebar mobile */}
       {menuOpen && (
         <div className="fixed inset-0 z-40 md:hidden">
           <button
@@ -72,8 +43,7 @@ export function AppLayout() {
       )}
 
       <div className="flex min-w-0 flex-1 flex-col">
-        {/* Tinggi h-16 disamakan dengan header logo di sidebar agar garisnya sejajar */}
-        <header className="flex h-16 items-center justify-between gap-3 border-b bg-card px-4 md:px-6">
+        <header className="flex h-14 items-center justify-between gap-3 border-b bg-card px-4 md:px-6">
           <Button
             variant="ghost"
             size="icon"
@@ -86,7 +56,7 @@ export function AppLayout() {
 
           <div className="ml-auto flex items-center gap-3">
             <div className="hidden text-right sm:block">
-              <p className="text-sm font-medium leading-tight">{session.user.fullName}</p>
+              <p className="text-sm font-bold leading-tight">{session.user.fullName}</p>
               <p className="text-xs text-muted-foreground">{session.user.email}</p>
             </div>
             <Badge variant="secondary">{ROLE_LABEL[role]}</Badge>
