@@ -55,7 +55,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     return () => clearTimeout(timer);
   }, [session]);
 
-  // Logout/login di tab lain ikut tersinkron.
   useEffect(() => {
     const onStorage = (e: StorageEvent) => {
       if (e.key === SESSION_KEY) setSession(authService.restore());

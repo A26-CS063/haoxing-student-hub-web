@@ -99,7 +99,7 @@ npx shadcn@latest add table dialog dropdown-menu select sonner
 
 1. Kontrak API login disepakati dengan FS-1, lalu `apiAuthService` disambungkan.
 2. Tes otomatis untuk `ProtectedRoute` dan `RoleRoute` (Vitest + Testing Library): tanpa sesi ke `/login`, pemilik di `/dokumen` melihat 403, admin melihat semua menu.
-3. Isi halaman Data siswa (FR-10 sampai FR-16).
+
 
 ## Layanan AI
 

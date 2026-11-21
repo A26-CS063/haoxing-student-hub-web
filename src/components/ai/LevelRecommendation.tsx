@@ -12,7 +12,6 @@ import { predictLevel } from "@/services/ai/aiService";
 import { ApiError, type LevelRecommendation as Recommendation } from "@/types/ai";
 
 interface Props {
-  /** Dipanggil saat admin menekan "Gunakan level ini" (mis. mengisi form pre-test). */
   onUse?: (level: string) => void;
 }
 
